@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8diyrdf2yp1v"]
+
+[ext_resource type="Texture2D" uid="uid://c14laqnlca3gn" path="res://resources/textures/map/Debug-Orange/texture_03.png" id="1_lgrwq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4pmxj"]
+albedo_texture = ExtResource("1_lgrwq")
+uv1_triplanar = true
+
+[node name="World" type="Node3D"]
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_4pmxj")
+size = Vector3(1000, 1, 1000)
