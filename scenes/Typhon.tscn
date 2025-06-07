@@ -1,18 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5grw7650wghq"]
+[gd_scene load_steps=6 format=3 uid="uid://b8k0lqaxrccwl"]
 
-[ext_resource type="Script" uid="uid://hm73kwuyfpbo" path="res://scripts/characters/Typhon.gd" id="1_g2els"]
-[ext_resource type="Texture2D" uid="uid://bcjjrrtxk4vw5" path="res://resources/textures/map/Debug-Light/texture_01.png" id="2_qhqgy"]
+[ext_resource type="Script" uid="uid://hm73kwuyfpbo" path="res://scripts/characters/Typhon.gd" id="1_5hvya"]
+[ext_resource type="Resource" uid="uid://dpli44b3vheeg" path="res://scripts/characters/TyphonStats.tres" id="2_iccdd"]
+[ext_resource type="Texture2D" uid="uid://bcjjrrtxk4vw5" path="res://resources/textures/map/Debug-Light/texture_01.png" id="2_n203v"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_dqkch"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qlg0r"]
-albedo_texture = ExtResource("2_qhqgy")
+albedo_texture = ExtResource("2_n203v")
 
 [node name="Typhon" type="CharacterBody3D"]
 wall_min_slide_angle = 0.523599
-script = ExtResource("1_g2els")
-selected_character = "Typhon"
-max_jumps = 1
+script = ExtResource("1_5hvya")
+stats = ExtResource("2_iccdd")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

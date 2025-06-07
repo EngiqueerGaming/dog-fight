@@ -1,23 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8diyrdf2yp1v"]
+[gd_scene load_steps=11 format=3 uid="uid://c8diyrdf2yp1v"]
 
 [ext_resource type="Texture2D" uid="uid://c8qs5q0jrsm4e" path="res://resources/textures/map/Debug-Dark/texture_01.png" id="1_4pmxj"]
 [ext_resource type="Texture2D" uid="uid://ckr5axlr5v31b" path="res://resources/textures/map/Debug-Orange/texture_01.png" id="2_3vd64"]
 [ext_resource type="PackedScene" uid="uid://b5grw7650wghq" path="res://scenes/player.tscn" id="3_3vd64"]
-
-[sub_resource type="GDScript" id="GDScript_3vd64"]
-script/source = "extends Node3D
-
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hqhvd"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -50,7 +35,6 @@ albedo_texture = ExtResource("2_3vd64")
 albedo_texture = ExtResource("2_3vd64")
 
 [node name="Main" type="Node3D"]
-script = SubResource("GDScript_3vd64")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.135716, -0.481836, 0.865688, 0, 0.873772, 0.486335, -0.990748, -0.0660033, 0.118584, 0, 0, 0)
