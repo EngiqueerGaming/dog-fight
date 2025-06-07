@@ -1,16 +1,88 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8diyrdf2yp1v"]
+[gd_scene load_steps=12 format=3 uid="uid://c8diyrdf2yp1v"]
 
-[ext_resource type="Texture2D" uid="uid://c14laqnlca3gn" path="res://resources/textures/map/Debug-Orange/texture_03.png" id="1_lgrwq"]
+[ext_resource type="Texture2D" uid="uid://c8qs5q0jrsm4e" path="res://resources/textures/map/Debug-Dark/texture_01.png" id="1_4pmxj"]
+[ext_resource type="Texture2D" uid="uid://ckr5axlr5v31b" path="res://resources/textures/map/Debug-Orange/texture_01.png" id="2_3vd64"]
+[ext_resource type="PackedScene" uid="uid://b5grw7650wghq" path="res://scenes/player.tscn" id="3_3vd64"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4pmxj"]
-albedo_texture = ExtResource("1_lgrwq")
+[sub_resource type="GDScript" id="GDScript_3vd64"]
+script/source = "extends Node3D
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hqhvd"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_kayp2"]
+sky_material = SubResource("ProceduralSkyMaterial_hqhvd")
+
+[sub_resource type="Environment" id="Environment_j2wbo"]
+background_mode = 2
+sky = SubResource("Sky_kayp2")
+tonemap_mode = 2
+sdfgi_enabled = true
+glow_enabled = true
+fog_enabled = true
+fog_density = 0.001
+fog_depth_curve = 5.46414
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t48sv"]
+albedo_texture = ExtResource("1_4pmxj")
 uv1_triplanar = true
 
-[node name="World" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_svo7y"]
+albedo_texture = ExtResource("2_3vd64")
 
-[node name="Map" type="Node3D" parent="."]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ph7u"]
+albedo_texture = ExtResource("2_3vd64")
 
-[node name="Floor" type="CSGBox3D" parent="Map"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o7ao6"]
+albedo_texture = ExtResource("2_3vd64")
+
+[node name="Main" type="Node3D"]
+script = SubResource("GDScript_3vd64")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.135716, -0.481836, 0.865688, 0, 0.873772, 0.486335, -0.990748, -0.0660033, 0.118584, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_j2wbo")
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-material_override = SubResource("StandardMaterial3D_4pmxj")
+material_override = SubResource("StandardMaterial3D_t48sv")
+use_collision = true
 size = Vector3(1000, 1, 1000)
+
+[node name="Object1" type="CSGBox3D" parent="World"]
+transform = Transform3D(0.733682, 0, -0.679493, 0, 1, 0, 0.679493, 0, 0.733682, 6.47051, 0.502327, -5.11262)
+material_override = SubResource("StandardMaterial3D_svo7y")
+use_collision = true
+
+[node name="Cylinder" type="CSGCylinder3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.53106, 0, -1.41882)
+material_override = SubResource("StandardMaterial3D_5ph7u")
+use_collision = true
+radius = 0.977539
+sides = 20
+
+[node name="Object2" type="CSGBox3D" parent="World"]
+transform = Transform3D(0.948351, 0, 0.317222, 0, 1, 0, -0.317222, 0, 0.948351, 3.79032, 0.5, 3.77923)
+material_override = SubResource("StandardMaterial3D_o7ao6")
+use_collision = true
+
+[node name="Player" parent="." instance=ExtResource("3_3vd64")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675025, 0)
