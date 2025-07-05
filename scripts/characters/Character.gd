@@ -4,10 +4,11 @@ extends CharacterBody3D
 
 @onready var camera_mount: Node3D = $CameraMount
 
-var display_name: String = "Character"
+var display_name: String = "Jon Debug"
 var max_health: int  = 100
 var health: int = max_health
 var alive: bool = true
+@export var is_team_red: bool = true
 
 var speed: float = 5
 var sprint_speed: float = 8
@@ -15,6 +16,9 @@ var jump_velocity: float = 5
 var max_jumps: int = 0
 var current_jumps: int = 0
 var air_acceleration: float = 0
+
+var m1_attacks: Array[Array]
+var m2_attacks: Array[Array]
 
 @export var camera_sensitivity_x: float = 0.5
 @export var camera_sensitivity_y: float = 0.5
@@ -25,22 +29,31 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	# Determine selected character
 	
-	stats = preload("res://scripts/characters/TyphonStats.tres")
+	if stats != null:
+		display_name = stats.name
+		max_health = stats.max_hp
+		health = max_health
+		speed = stats.walk_speed
+		sprint_speed = stats.sprint_speed
+		jump_velocity = stats.jump_velocity
+		max_jumps = stats.jumps
+		air_acceleration = stats.air_acceleration
+		m1_attacks = stats.m1_attack_string
+		m2_attacks = stats.m2_attack_string
 	
-	display_name = stats.name
-	max_health = stats.max_hp
-	health = max_health
-	speed = stats.walk_speed
-	sprint_speed = stats.sprint_speed
-	jump_velocity = stats.jump_velocity
-	max_jumps = stats.jumps
-	air_acceleration = stats.air_acceleration
+	if is_team_red:
+		set_collision_layer_value(2, true)
+		set_collision_mask_value(3, true)
+	else:
+		set_collision_layer_value(3, true)
+		set_collision_mask_value(2, true)
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-event.relative.x*camera_sensitivity_x))
 		camera_mount.rotate_x(deg_to_rad(-event.relative.y*camera_sensitivity_y))
 		camera_mount.rotation[0] = clamp(deg_to_rad(camera_mount.rotation_degrees.x), min_camera, max_camera)
+	pass
 
 func _physics_process(delta: float) -> void:
 	var just_jumped: bool = false

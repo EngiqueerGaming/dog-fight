@@ -8,5 +8,11 @@ extends Resource
 @export var jumps: int = 1
 @export var jump_velocity: float = 6
 @export var air_acceleration: float = 0
-@export var base_damage: int = 20
-@export var action_speed: float = 1
+
+@export var is_m1_ranged: bool = false
+@export var is_m2_ranged: bool = false
+
+# Attack should be formatted as vector 4 (x,y,z,rotation), (int)damage, vector 2(lifetime, delay)
+# Delay of 0 = last attack
+@export var m1_attack_string: Array[Array]
+@export var m2_attack_string: Array[Array]
