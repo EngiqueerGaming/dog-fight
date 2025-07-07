@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://c8qs5q0jrsm4e" path="res://resources/textures/map/Debug-Dark/texture_01.png" id="1_4pmxj"]
 [ext_resource type="Texture2D" uid="uid://ckr5axlr5v31b" path="res://resources/textures/map/Debug-Orange/texture_01.png" id="2_3vd64"]
-[ext_resource type="PackedScene" uid="uid://b5grw7650wghq" path="res://scenes/player.tscn" id="3_3vd64"]
+[ext_resource type="PackedScene" uid="uid://b8k0lqaxrccwl" path="res://scenes/Typhon.tscn" id="3_3vd64"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hqhvd"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -68,5 +68,4 @@ transform = Transform3D(0.948351, 0, 0.317222, 0, 1, 0, -0.317222, 0, 0.948351, 
 material_override = SubResource("StandardMaterial3D_o7ao6")
 use_collision = true
 
-[node name="Player" parent="." instance=ExtResource("3_3vd64")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675025, 0)
+[node name="Typhon" parent="." instance=ExtResource("3_3vd64")]

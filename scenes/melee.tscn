@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://qhhcvj2osebt"]
+
+[ext_resource type="Script" uid="uid://qlcqxohyn57b" path="res://melee.gd" id="1_v46oj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y0ovp"]
+
+[node name="Area3D" type="Area3D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_v46oj")
+
+[node name="Hurtbox" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_y0ovp")
