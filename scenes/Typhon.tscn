@@ -17,6 +17,7 @@ stats = ExtResource("2_iccdd")
 [node name="Hitbox" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_dqkch")
+debug_fill = false
 
 [node name="Visuals" type="Node3D" parent="."]
 
@@ -29,3 +30,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.991, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraMount"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12529, 0.805774, 3.93589)
+
+[node name="AttackMount" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, -1.2)

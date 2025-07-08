@@ -1,8 +1,8 @@
 extends Area3D
 
-@onready var x_scale: int
-@onready var y_scale: int
-@onready var z_scale: int
+@onready var x_scale: float
+@onready var y_scale: float
+@onready var z_scale: float
 var lifetime: float
 var damage: int
 var is_team_red: bool

@@ -13,6 +13,6 @@ jump_velocity = 5.0
 air_acceleration = 0.05
 is_m1_ranged = false
 is_m2_ranged = false
-m1_attack_string = Array[Array]([[Vector4(12, 2, 6, 0), 20, Vector2(0.3, 0)]])
+m1_attack_string = Array[Array]([[Vector4(1.2, 0.2, 0.6, 0), 20, Vector2(0.3, 0.5)]])
 m2_attack_string = Array[Array]([])
 metadata/_custom_type_script = "uid://dm00ys0nqdiox"

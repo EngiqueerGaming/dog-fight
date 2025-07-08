@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://qhhcvj2osebt"]
 
-[ext_resource type="Script" uid="uid://qlcqxohyn57b" path="res://melee.gd" id="1_v46oj"]
+[ext_resource type="Script" uid="uid://qlcqxohyn57b" path="res://scripts/melee.gd" id="1_v46oj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y0ovp"]
 
@@ -11,3 +11,4 @@ script = ExtResource("1_v46oj")
 
 [node name="Hurtbox" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_y0ovp")
+debug_color = Color(1, 0, 0, 0.419608)

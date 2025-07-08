@@ -3,6 +3,8 @@ extends CharacterBody3D
 @export var stats: CharacterStats
 
 @onready var camera_mount: Node3D = $CameraMount
+@onready var attack_mount: Node3D = $AttackMount
+const melee_hurtbox = preload("res://scenes/melee.tscn")
 
 var display_name: String = "Jon Debug"
 var max_health: int  = 100
@@ -19,6 +21,11 @@ var air_acceleration: float = 0
 
 var m1_attacks: Array[Array]
 var m2_attacks: Array[Array]
+var m1_attack_length: int
+var m2_attack_length: int
+var m1_attack: int = 0 
+var m2_attack: int = 0
+var attack_cooldown: float = 0
 
 @export var camera_sensitivity_x: float = 0.5
 @export var camera_sensitivity_y: float = 0.5
@@ -40,6 +47,8 @@ func _ready():
 		air_acceleration = stats.air_acceleration
 		m1_attacks = stats.m1_attack_string
 		m2_attacks = stats.m2_attack_string
+		m1_attack_length = m1_attacks.size()
+		m2_attack_length = m2_attacks.size()
 	
 	if is_team_red:
 		set_collision_layer_value(2, true)
@@ -53,7 +62,6 @@ func _input(event):
 		rotate_y(deg_to_rad(-event.relative.x*camera_sensitivity_x))
 		camera_mount.rotate_x(deg_to_rad(-event.relative.y*camera_sensitivity_y))
 		camera_mount.rotation[0] = clamp(deg_to_rad(camera_mount.rotation_degrees.x), min_camera, max_camera)
-	pass
 
 func _physics_process(delta: float) -> void:
 	var just_jumped: bool = false
@@ -98,3 +106,22 @@ func _physics_process(delta: float) -> void:
 					velocity.z = move_toward(velocity.z, direction.z * sprint_speed, sprint_speed*air_acceleration)
 	
 	move_and_slide()
+
+func _process(delta: float) -> void:
+	attack_cooldown -= delta
+	if Input.is_action_pressed("primary_attack") and attack_cooldown <= 0:
+		m2_attack = 0
+		if m1_attack < m1_attack_length:
+			var hurtbox = melee_hurtbox.instantiate()
+			hurtbox.x_scale = m1_attacks[m1_attack][0][0]
+			hurtbox.y_scale = m1_attacks[m1_attack][0][1]
+			hurtbox.z_scale = m1_attacks[m1_attack][0][2]
+			hurtbox.rotate_z(m1_attacks[m1_attack][0][3])
+			hurtbox.damage = m1_attacks[m1_attack][1]
+			hurtbox.lifetime = m1_attacks[m1_attack][2][0]
+			attack_cooldown = m1_attacks[m1_attack][2][1]
+			attack_mount.add_child(hurtbox)
+		else:
+			m1_attack = 0
+	if Input.is_action_just_released("primary_attack"):
+		m1_attack = 0
